@@ -1,0 +1,12 @@
+{% for product in products %}
+    <li>
+        <hr>
+        <h2><a href="{{product.get_absolute_url}}">{{product.name}}</a></h2>
+        {% for images in product.images.all %}
+        <img src="{{images.images.url}}" width="265" height="332">
+        {% endfor %}
+        <p>₽ {{product.price}}</p>
+        <p>{{product.description}}</p>
+        <hr>
+    </li>
+{% endfor %}

@@ -1,0 +1,17 @@
+{% extends 'shop/base.html' %}
+{% load shop_tags %}
+{% block content %}
+<h1>{{title}}</h1>
+
+<li>
+    {% for catalog in catalogs %}
+    {% if catalog.product__count > 0 %}
+    <h3><a href="{{catalog.get_absolute_url}}">{{catalog.name}}</a></h3>
+    {% endif %}
+    {% endfor %}
+</li>
+
+<ul>
+    {% show_products_tag %}
+</ul>
+{% endblock %}

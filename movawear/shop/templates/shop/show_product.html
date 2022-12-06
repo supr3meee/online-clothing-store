@@ -1,0 +1,29 @@
+{% extends 'shop/base.html' %}
+{% load shop_tags %}
+{% block content %}
+
+<h1><a href="{% url 'catalog' %}">{{title}}</a></h1>
+
+<ul>
+    <li>
+        <hr>
+        <h2>{{product.name}}</h2>
+        {% for images in product.images.all %}
+        <img src="{{images.images.url}}" width="265" height="332">
+        {% endfor %}
+        <h3>Цена</h3>
+        <p>₽ {{product.price}}</p>
+        <p>{{product.description}}</p>
+        <h3>Размер</h3>
+        {% for item in product.amount.all %}
+        <ul>{{item.size}}</ul>
+        {% endfor %}
+        <form action="{% url 'cart_add' product.id %}" method="post">
+            {{ cart_product_form }}
+            {% csrf_token %}
+            <input type="submit" value="В корзину">
+        </form>
+        <hr>
+    </li>
+</ul>
+{% endblock %}
